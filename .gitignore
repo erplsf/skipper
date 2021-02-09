@@ -63,8 +63,10 @@ CMakeUserPresets.json
 ### Ninja ###
 .ninja_deps
 .ninja_log
+build.ninja
 
 # End of https://www.toptal.com/developers/gitignore/api/ninja,c++,cmake
 
 .ccls-cache
 skipper
+deps
