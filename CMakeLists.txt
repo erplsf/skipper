@@ -45,26 +45,24 @@ ExternalProject_Add(
   "-DASIO_SOURCE_DIR=${asio-cmake_SOURCE_DIR}"
   "-DCMAKE_PROJECT_kRPC_INCLUDE=${CMAKE_SOURCE_DIR}/include_asio.cmake"
   "-DCMAKE_INSTALL_PREFIX=${PROJECT_BINARY_DIR}/_deps/krpc-install"
+  BUILD_BYPRODUCTS "${PROJECT_BINARY_DIR}/_deps/krpc-install/lib/libkrpc.so"
   DEPENDS protobuf::libprotobuf protobuf::protoc asio)
 
-add_library(krpc SHARED IMPORTED)
-
 ExternalProject_Get_Property(krpc-project INSTALL_DIR)
-ExternalProject_Get_Property(krpc-project BINARY_DIR)
-message("main")
-message("${BINARY_DIR}")
+
 set(krpc_INCLUDE_DIR "${INSTALL_DIR}/include")
 set(krpc_LIB_DIR "${INSTALL_DIR}")
 
-set_target_properties(krpc
+add_library(krpc-lib SHARED IMPORTED)
+set_target_properties(krpc-lib
   PROPERTIES
   IMPORTED_LOCATION ${krpc_LIB_DIR}/lib/libkrpc.so)
 
-add_dependencies(krpc krpc-project)
+add_dependencies(krpc-lib krpc-project)
+add_dependencies(${PROJECT_NAME} krpc-project)
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${krpc_INCLUDE_DIR})
-target_include_directories(${PROJECT_NAME} PRIVATE "${protobuf_SOURCE_DIR}/src")
-# target_include_directories(${PROJECT_NAME} PRIVATE "${asio_SOURCE_DIR}/include")
+target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE ${krpc_INCLUDE_DIR})
+target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE "${protobuf_SOURCE_DIR}/src")
 
-target_link_libraries(${PROJECT_NAME} "${protobuf_BINARY_DIR}/libprotobuf.so")
-target_link_libraries(${PROJECT_NAME} krpc)
+target_link_libraries(${PROJECT_NAME} protobuf::libprotobuf)
+target_link_libraries(${PROJECT_NAME} krpc-lib)
