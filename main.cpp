@@ -2,6 +2,7 @@
 #include <krpc.hpp>
 #include <krpc/services/krpc.hpp>
 #include <signal.h>
+#include "principia.hpp"
 
 int main() {
   krpc::Client conn;
@@ -9,11 +10,11 @@ int main() {
   try {
     conn = krpc::connect("skipper");
   } catch (const std::system_error &e) {
-    std::cout << "Couldn't connect to the server, got the following error "
-                 "code: "
-              << std::endl
-              << '\t' << e.what() << std::endl
-              << "Exiting." << std ::endl;
+    std::cout
+        << "Couldn't connect to the server, got the following error code: "
+        << std::endl
+        << '\t' << e.what() << std::endl
+        << "Exiting." << std ::endl;
     exit(1);
   }
 
@@ -21,9 +22,6 @@ int main() {
   std::cout << "Connected to kRPC server version: "
             << krpc.get_status().version() << std::endl;
 
-  std::cout << "Going into sleep / Waiting for any signal..." << std::endl;
-
-  sigset_t mask;
-  sigemptyset(&mask);
-  sigsuspend(&mask);
+  krpc::services::Principia prp(&conn);
+  std::cout << "Is Principia available -> " << prp.available() << std::endl;
 }
