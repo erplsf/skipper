@@ -1,8 +1,9 @@
+#include <cmath>
 #include <iostream>
 #include <krpc.hpp>
 #include <krpc/services/krpc.hpp>
-#include <signal.h>
-#include "principia.hpp"
+#include <krpc/services/space_center.hpp>
+#include "calc.hpp"
 
 int main() {
   krpc::Client conn;
@@ -22,6 +23,9 @@ int main() {
   std::cout << "Connected to kRPC server version: "
             << krpc.get_status().version() << std::endl;
 
-  krpc::services::Principia prp(&conn);
-  std::cout << "Is Principia available -> " << prp.available() << std::endl;
+  krpc::services::SpaceCenter sc(&conn);
+  auto bodiesMap = sc.bodies();
+  auto kerbin = bodiesMap.at("Kerbin");
+  std::cout << dV_apo(kerbin.gravitational_parameter(), 1'000 * 90, 1'000 * 120) << std::endl;
 }
+

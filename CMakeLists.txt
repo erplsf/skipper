@@ -9,9 +9,10 @@ project(skipper
   DESCRIPTION autopilot
   LANGUAGES CXX)
 
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} main.cpp calc.cpp)
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
+# list(APPEND flags "-Wall")
 
 include(FetchContent)
 FetchContent_Declare(
@@ -63,6 +64,7 @@ add_dependencies(${PROJECT_NAME} krpc-project)
 
 target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE ${krpc_INCLUDE_DIR})
 target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE "${protobuf_SOURCE_DIR}/src")
+target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR})
 
 target_link_libraries(${PROJECT_NAME} protobuf::libprotobuf)
 target_link_libraries(${PROJECT_NAME} krpc-lib)
