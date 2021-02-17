@@ -70,3 +70,4 @@ build.ninja
 .ccls-cache
 skipper
 deps
+build

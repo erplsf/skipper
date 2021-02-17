@@ -24,8 +24,7 @@ int main() {
             << krpc.get_status().version() << std::endl;
 
   krpc::services::SpaceCenter sc(&conn);
-  auto bodiesMap = sc.bodies();
-  auto kerbin = bodiesMap.at("Kerbin");
+  auto kerbin = sc.bodies().at("Kerbin");
   std::cout << dV_apo(kerbin.gravitational_parameter(), 1'000 * 90, 1'000 * 120) << std::endl;
 }
 
