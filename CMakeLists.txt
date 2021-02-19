@@ -12,7 +12,7 @@ project(skipper
 add_executable(${PROJECT_NAME} main.cpp calc.cpp)
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
-# list(APPEND flags "-Wall")
+list(APPEND flags "-Wall" "-Wextra")
 
 include(FetchContent)
 FetchContent_Declare(
@@ -62,9 +62,16 @@ set_target_properties(krpc-lib
 add_dependencies(krpc-lib krpc-project)
 add_dependencies(${PROJECT_NAME} krpc-project)
 
+
 target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE ${krpc_INCLUDE_DIR})
 target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE "${protobuf_SOURCE_DIR}/src")
 target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR})
 
 target_link_libraries(${PROJECT_NAME} protobuf::libprotobuf)
 target_link_libraries(${PROJECT_NAME} krpc-lib)
+
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup(TARGETS)
+
+# target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE ${CONAN_INCLUDE_DIRS_MP-UNITS})
+target_link_libraries(${PROJECT_NAME} CONAN_PKG::mp-units)
