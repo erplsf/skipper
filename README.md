@@ -1,4 +1,4 @@
-# skipper
+# smok
 
 use `cmake -GNinja . && ninja` to build.
 

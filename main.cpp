@@ -16,7 +16,7 @@ int main() {
     krpc::Client conn;
 
     try {
-        conn = krpc::connect("skipper");
+        conn = krpc::connect("smok");
     } catch (const std::system_error &e) {
         std::cout
                 << "Couldn't connect to the server, got the following error code: "
