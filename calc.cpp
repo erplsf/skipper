@@ -1,5 +1,3 @@
-#pragma once
-
 #include <units/physical/si/derived/speed.h>
 #include <units/physical/si/si.h>
 

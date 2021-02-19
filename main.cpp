@@ -1,5 +1,3 @@
-#include "calc.cpp"
-
 #include <cmath>
 #include <iostream>
 #include <krpc.hpp>
@@ -8,6 +6,7 @@
 #include <units/physical/si/derived/speed.h>
 #include <units/format.h>
 #include <units/quantity_io.h>
+#include "calc.cpp"
 
 int main() {
     using namespace units;
@@ -39,7 +38,7 @@ int main() {
     GravitationalParameter auto gp = gravitational_parameter<gravitational_parameter_unit>(kerbin.gravitational_parameter());
     auto htp = HohmannTransferParameters(gp,
                                          gp,
-                                         periapsis, periapsis + 100_q_km);
+                                         periapsis, periapsis + 150_q_km);
     std::cout << fmt::format("members: {}, {}, {}, {}\n", htp.mu_1, htp.mu_2, htp.r_1, htp.r_2);
     std::cout << fmt::format("dV required at Per: {}\n", htp.dVPer());
     std::cout << fmt::format("dV required at Apo: {}\n", htp.dVApo());

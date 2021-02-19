@@ -4,15 +4,16 @@ if(${CMAKE_VERSION} VERSION_LESS 3.12)
     cmake_policy(VERSION ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION})
 endif()
 
-project(skipper
+project(smok
   VERSION 0.1
-  DESCRIPTION autopilot
+  DESCRIPTION "KSP/kRPC/Principia + Orbital Mechanics exploraion"
   LANGUAGES CXX)
 
 add_executable(${PROJECT_NAME} main.cpp calc.cpp)
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
-list(APPEND flags "-Wall" "-Wextra")
+target_compile_options(${PROJECT_NAME} PUBLIC -Wall)
+target_compile_options(${PROJECT_NAME} PUBLIC -Wextra)
 
 include(FetchContent)
 FetchContent_Declare(
