@@ -15,6 +15,8 @@ target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 target_compile_options(${PROJECT_NAME} PUBLIC -Wall)
 target_compile_options(${PROJECT_NAME} PUBLIC -Wextra)
 
+target_compile_options(${PROJECT_NAME} PRIVATE -Q)
+
 include(FetchContent)
 FetchContent_Declare(
   protobuf
