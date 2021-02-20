@@ -37,7 +37,7 @@ int main() {
     GravitationalParameter auto gp = gravitational_parameter<metre_cub_per_second_sq>(celestialBody.gravitational_parameter());
     auto ht = HohmannTransfer(gp,
                               gp,
-                              periapsis, periapsis + 200_q_km);
+                              periapsis, periapsis + 100_q_km);
     std::cout << fmt::format("Orbiting: ", celestialBody.name());
     std::cout << fmt::format("r_1: {}\n", ht.r_1);
     std::cout << fmt::format("r_2: {}\n", ht.r_2);

@@ -1,5 +1,4 @@
 #include <units/physical/si/derived/speed.h>
-#include <units/physical/si/si.h>
 #include <units/concepts.h>
 #include <units/math.h> // NOLINT(modernize-deprecated-headers)
 
