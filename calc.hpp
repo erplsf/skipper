@@ -1,3 +1,6 @@
+#ifndef __CALC_H_
+#define __CALC_H_
+
 #include <units/physical/si/derived/speed.h>
 #include <units/concepts.h>
 #include <units/math.h> // NOLINT(modernize-deprecated-headers)
@@ -54,3 +57,5 @@ public:
             dV_P(dVPer()),
             dV_T(dV_A + dV_P) {};
 };
+
+#endif

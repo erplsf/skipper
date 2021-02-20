@@ -1,12 +1,10 @@
-#include <cmath>
 #include <iostream>
 #include <krpc.hpp>
 #include <krpc/services/krpc.hpp>
 #include <krpc/services/space_center.hpp>
 #include <units/physical/si/derived/speed.h>
 #include <units/format.h>
-#include <units/quantity_io.h>
-#include "calc.cpp"
+#include "calc.hpp"
 
 int main() {
     using namespace units;

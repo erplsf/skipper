@@ -6,10 +6,10 @@ endif()
 
 project(smok
   VERSION 0.1
-  DESCRIPTION "KSP/kRPC/Principia + Orbital Mechanics exploraion"
+  DESCRIPTION "KSP/kRPC/Principia + Orbital Mechanics exploration"
   LANGUAGES CXX)
 
-add_executable(${PROJECT_NAME} main.cpp calc.cpp)
+add_executable(${PROJECT_NAME} main.cpp)
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 target_compile_options(${PROJECT_NAME} PUBLIC -Wall)
